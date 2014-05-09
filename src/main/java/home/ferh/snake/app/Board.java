@@ -66,8 +66,8 @@ public class Board extends Activity implements View.OnTouchListener {
     public void checkCollision() {
         for (int i = dots; i > 0; i--) {
             if ((i > 4) && (x[0] == x[i]) && (y[0] == y[i])) {
-                //dots = i - 1;
-                inGame = false;
+                dots = i - 1;
+                //inGame = false;
             }
         }
         if (x[0] > SCREEN_WIDTH - DOT_SIZE) {
