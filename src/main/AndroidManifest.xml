@@ -1,0 +1,31 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="home.ferh.snake.app">
+
+    <application
+        android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:icon="@drawable/ic_launcher">
+
+        <activity android:name=".TitleActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"></action>
+                <category android:name="android.intent.category.LAUNCHER"></category>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".Board">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <action android:name="board"></action>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".Settings">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <action android:name="settings"></action>
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
