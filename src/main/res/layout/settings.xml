@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Classic snake with walls"
-            android:id="@+id/radioButtonClassicWihWalls"
+            android:id="@+id/radioButtonClassicWithWalls"
             android:layout_gravity="center_horizontal|left" />
 
         <RadioButton
@@ -74,28 +74,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1"
-            android:id="@+id/radioButton"
+            android:id="@+id/speed1"
             android:checked="false" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2"
-            android:id="@+id/radioButton2"
+            android:id="@+id/speed2"
             android:checked="false" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3"
-            android:id="@+id/radioButton3"
+            android:id="@+id/speed3"
             android:checked="false" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="4"
-            android:id="@+id/radioButton4"
+            android:id="@+id/speed4"
             android:checked="false" />
     </RadioGroup>
 

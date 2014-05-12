@@ -1,8 +1,8 @@
 package home.ferh.snake.app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
@@ -17,7 +17,6 @@ public class Settings extends Activity implements View.OnClickListener {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Log.d("TAG", "Settings");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
@@ -29,5 +28,10 @@ public class Settings extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        Intent intent = new Intent();
+        intent.putExtra("Game mode", radiogroup_mode.getCheckedRadioButtonId());
+        intent.putExtra("Game speed", radiogroup_speed.getCheckedRadioButtonId());
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }

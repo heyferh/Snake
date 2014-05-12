@@ -13,6 +13,8 @@ import android.view.SurfaceView;
 import android.view.View;
 
 public class Board extends Activity implements View.OnTouchListener {
+    int gameMode = 1;
+    int gameSpeed = 2;
     GestureDetector gdt = new GestureDetector(new SwipeListener());
     DrawView drw;
     final int SCREEN_WIDTH = 480;
@@ -33,6 +35,24 @@ public class Board extends Activity implements View.OnTouchListener {
     Paint ap = new Paint();
 
     public void InitGame() {
+        gameSpeed = getIntent().getIntExtra("Game speed", 0);
+        gameMode = getIntent().getIntExtra("Game mode", 0);
+        switch (gameSpeed) {
+            case R.id.speed1:
+                gameSpeed = 200;
+                break;
+            case R.id.speed2:
+                gameSpeed = 150;
+                break;
+            case R.id.speed3:
+                gameSpeed = 100;
+                break;
+            case R.id.speed4:
+                gameSpeed = 50;
+                break;
+            default:
+                break;
+        }
         p.setColor(Color.WHITE);
         ap.setColor(Color.GREEN);
         dots = 3;
@@ -66,21 +86,39 @@ public class Board extends Activity implements View.OnTouchListener {
     public void checkCollision() {
         for (int i = dots; i > 0; i--) {
             if ((i > 4) && (x[0] == x[i]) && (y[0] == y[i])) {
-                dots = i - 1;
-                //inGame = false;
+                if (gameMode == R.id.radioButtonHungrySnake)
+                    dots = i - 1;
+                else
+                    inGame = false;
             }
         }
         if (x[0] > SCREEN_WIDTH - DOT_SIZE) {
-            x[0] = 0;
+            if (gameMode == R.id.radioButtonWithoutWalls) {
+                x[0] = 0;
+            } else {
+                inGame = false;
+            }
         }
         if (x[0] < 0) {
-            x[0] = (SCREEN_WIDTH / DOT_SIZE - 1) * DOT_SIZE;
+            if (gameMode == R.id.radioButtonWithoutWalls) {
+                x[0] = (SCREEN_WIDTH / DOT_SIZE - 1) * DOT_SIZE;
+            } else {
+                inGame = false;
+            }
         }
         if (y[0] > SCREEN_HEIGHT - DOT_SIZE) {
-            y[0] = 0;
+            if (gameMode == R.id.radioButtonWithoutWalls) {
+                y[0] = 0;
+            } else {
+                inGame = false;
+            }
         }
         if (y[0] < 0) {
-            y[0] = (SCREEN_HEIGHT / DOT_SIZE - 1) * DOT_SIZE;
+            if (gameMode == R.id.radioButtonWithoutWalls) {
+                y[0] = (SCREEN_HEIGHT / DOT_SIZE - 1) * DOT_SIZE;
+            } else {
+                inGame = false;
+            }
         }
     }
 
@@ -235,7 +273,7 @@ public class Board extends Activity implements View.OnTouchListener {
                             continue;
                         if (inGame) {
                             try {
-                                sleep(100, 0);
+                                sleep(gameSpeed, 0);
                             } catch (InterruptedException e) {
                             }
                             checkApple();
